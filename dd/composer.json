@@ -1,0 +1,26 @@
+{
+    "name": "danidoble/site",
+    "type": "project",
+    "description": "danidoble",
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
+    "license": "MIT",
+    "require": {
+        "illuminate/database": "*",
+        "illuminate/events": "^8.40",
+        "vlucas/phpdotenv": "^5.3",
+        "klein/klein": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    }
+}
