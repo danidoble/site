@@ -1,10 +1,13 @@
 <?php
+
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model as IModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class User extends IModel {
-    //use SoftDeletes;
+class User extends IModel
+{
+    use SoftDeletes;//if you don't want 'deleted_at' in your table comment this line
 
     //protected $table="users";
     //protected $primaryKey="id";
@@ -16,7 +19,7 @@ class User extends IModel {
      */
     protected $fillable = [
         'name',
-        'pass',
+        'password',
     ];
 
     /**
@@ -25,7 +28,7 @@ class User extends IModel {
      * @var array
      */
     protected $hidden = [
-        'pass'
+        'password'
     ];
 
     /**

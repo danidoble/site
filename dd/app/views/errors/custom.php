@@ -1,4 +1,12 @@
-<?php view('layouts/app.php', true, $this); ?>
+<!doctype html>
+<html lang="<?= env('APP_LANG', 'en') ?>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>404 <?= __('Not Found') ?></title>
+    <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
     <style>
         * {
@@ -58,16 +66,25 @@
             text-decoration: none;
         }
     </style>
-    <div class="bg-gray-100 min-h-100vh">
-        <div class="grid place-center min-h-100vh">
-            <div class="text-center">
-                <h1 class="text-xl text-gray-600"><?= env('APP_NAME', 'Double Site') ?> <?= __('Default page') ?></h1>
-                <h2 class="text-base font-normal">
-                    <?= __('Well! you already have the bases. Now it\'s your turn, build something with love') ?>
-                </h2>
-                <h2 class="text-xl">&#10084;</h2>
-            </div>
+</head>
+<body class="bg-gray-100">
+<div class="min-h-100vh">
+    <div class="grid place-center min-h-100vh">
+        <div class="text-center">
+            <h1 class="text-xl text-gray-600">Error</h1>
+            <h2 class="text-base font-normal">
+                <?= $err->msg ?>
+            </h2>
+            <h2 class="text-base font-normal"><?=__('Error code')?>. <?= $err->code ?></h2>
+            <h2 class="text-base font-normal">
+                <?= $err->details ?>
+            </h2>
+            <br>
+            <h2 class="text-base font-normal">
+                <?= $err->note ?>
+            </h2>
         </div>
-        <a href="https://github.com/danidoble/site" target="_blank" rel="noopener" class="credits text-gray-600"></a>
     </div>
-<?php view('layouts/end_app.php'); ?>
+</div>
+</body>
+</html>

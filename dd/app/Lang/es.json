@@ -1,0 +1,19 @@
+{
+  "View Not Found": "Vista no encontrada",
+  "Not Found": "No encontrada",
+  "Server error": "Error del servidor",
+  "Forbidden": "Prohibido",
+  "Unauthorized": "Sin autorización",
+  "Please copy the file '.env.example' to '.env'": "Por favor copia el archivo '.env.example' a '.env'",
+  "The configuration files doesn't exist, please make one called '.env' or copy the '.env.example' of github.com/danidoble/site": "Los archivos de configuración no existen, por favor has uno llamado '.env' or copia el '.env.example' de github.com/danidoble/site",
+  "Well! you already have the bases. Now it's your turn, build something with love": "¡Bien! ya tienes las bases. Ahora es tu turno, construye algo con amor",
+  "Users": "Usuarios",
+  "User": "Usuario",
+  "Default page": "Página por defecto",
+  "created by": "creado por",
+  "Please connect to the right database": "Por favor conectate a la base de datos correcta",
+  "Error code": "Código de error",
+  "Please make a table named 'users'": "Por favor crea una tabla llamada 'users'",
+  "If don't want 'users' table, remove the content of": "Si no quieres la tabla 'users', quita el contenido de",
+  "Please be sure of make this fields on table 'users'": "Por favor asegurate de crear estos campos en la tabla 'users'"
+}

@@ -5,7 +5,8 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title><?= isset($_th->sharedData()->title) ? $_th->sharedData()->title : '' ?>
+        | <?= env('APP_NAME', 'Double Site') ?></title>
 </head>
 <body>
 

@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>404 <?= __('Not Found') ?></title>
+    <title>401 <?= __('Unauthorized') ?></title>
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
     <style>
@@ -42,7 +42,7 @@
 </head>
 <body class="bg-gray-100">
 <div class="grid place-center min-h-100vh text-xl text-gray-600">
-    404 | <?= __('Not Found') ?>
+    401 | <?= __('Unauthorized') ?>
 </div>
 </body>
 </html>

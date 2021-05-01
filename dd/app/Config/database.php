@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Config;
+
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Container\Container;
@@ -29,5 +31,5 @@ try {
 // Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
     $capsule->bootEloquent();
 } catch (Exception $e) {
-    echo $e->getMessage();
+    showError($e);
 }
