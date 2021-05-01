@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends IModel
 {
-    use SoftDeletes;//if you don't want 'deleted_at' in your table comment this line
+    use SoftDeletes;
+
+    //if you don't want 'deleted_at' in your table comment this line
 
     //protected $table="users";
     //protected $primaryKey="id";

@@ -136,12 +136,12 @@ function diffForHumansComplete($date): string
 }
 
 /**
- * @param int $lenght
+ * @param int $length
  * @return string
  */
-function randStr($lenght = 60): string
+function randStr(int $length = 60): string
 {
-    return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $lenght);
+    return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
 }
 
 /**
@@ -185,25 +185,53 @@ function dateFormats($date = null, $sum = false, $res = false, $num = 0): object
     return (object)$time;
 }
 
-function showError($e){
+function showError($e): void
+{
     $err = (object)[];
     $err->code = $e->getCode();
-    $err->note = __('If don\'t want \'users\' table, remove the content of').' app/Config/test.php';
-    if($e->getCode() == 1049){
+    $err->note = __('If don\'t want \'users\' table, remove the content of') . ' app/Config/test.php';
+    if ($e->getCode() == 1049) {
         $err->msg = (__('Please connect to the right database'));
         $err->details = $e->getMessage();
-    }elseif($e->getCode() == '42S02'){
+    } elseif ($e->getCode() == '42S02') {
         $err->msg = (__('Please make a table named \'users\''));
         $err->details = $e->getMessage();
-    }elseif($e->getCode() == '42S22'){
-        $err->msg = (__('Please be sure of make this fields on table \'users\'').": 'id','name','password','created_at','updated_at','deleted_at'");
+    } elseif ($e->getCode() == '42S22') {
+        $err->msg = (__('Please be sure of make this fields on table \'users\'') . ": 'id','name','password','created_at','updated_at','deleted_at'");
         $err->details = $e->getMessage();
-    }else{
+    } else {
         $err->msg = $e->getMessage();
         $err->details = null;
     }
-    include view('errors/custom.php',false);
+    include view('errors/custom.php', false);
     exit();
+}
+
+/**
+ * @param $name
+ * @param null $path
+ * @return string|null
+ */
+function mix($name, $path = null): ?string
+{
+    $file = env('MIX_MANIFEST', 'mix-manifest.json');
+    $_dir = BASE_PATH . '/public';
+    if ($path === null) {
+        $path = env('MIX_PATH', '');
+    }
+    $_dir .= $path . '/';
+    try {
+        if (file_exists($_dir . $file)) {
+            $mix = json_decode(file_get_contents($_dir . $file));
+            return isset($mix->{$name}) ? BASE_URL . 'public' . $path . $mix->{$name} : BASE_URL . 'public' . $path . $name;
+        } else {
+            $error = htmlentities('No se encontro el archivo "' . $file . '"');
+            throw new Exception($error);
+        }
+    } catch (Exception $e) {
+        showError($e);
+    }
+    return null;
 }
 
 ///**

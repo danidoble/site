@@ -1,10 +1,13 @@
 <?php
+
 namespace App\Migrations;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
-class UsersMigration{
-    public function up(){
+class UsersMigration
+{
+    public function up()
+    {
         Capsule::schema()->create('users', function ($table) {
             $table->increments('id');
             $table->string('name');
@@ -14,7 +17,8 @@ class UsersMigration{
         });
     }
 
-    public function down(){
+    public function down()
+    {
         Capsule::schema()->dropIfExists('users');
     }
 }

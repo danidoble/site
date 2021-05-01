@@ -75,7 +75,7 @@
             <h2 class="text-base font-normal">
                 <?= $err->msg ?>
             </h2>
-            <h2 class="text-base font-normal"><?=__('Error code')?>. <?= $err->code ?></h2>
+            <h2 class="text-base font-normal"><?= __('Error code') ?>. <?= $err->code ?></h2>
             <h2 class="text-base font-normal">
                 <?= $err->details ?>
             </h2>
