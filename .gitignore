@@ -2,4 +2,5 @@
 /.well-known
 /dd/node_modules
 /dd/vendor
-app/.env
+/dd/.env
+dd/.env
