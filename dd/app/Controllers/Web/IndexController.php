@@ -3,9 +3,7 @@
  * Created by (c)danidoble (c) 2021.
  */
 
-namespace App\Controllers;
-
-use App\Models\User;
+namespace App\Controllers\Web;
 
 /**
  * Class IndexController
@@ -34,8 +32,10 @@ class IndexController
      */
     public function index()
     {
+        $flash = $this->service->flashes();
         $this->service->render(view('app.php', false), [
-            'title' => __(env('APP_NAME', 'Double Site'))
+            'title' => __(env('APP_NAME', 'Double Site')),
+            'flash' => $flash
         ]);
     }
 

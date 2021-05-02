@@ -1,19 +1,21 @@
 <?php
+/*
+ * Created by (c)danidoble (c) 2021.
+ */
 
-namespace App\Controllers;
+namespace App\Controllers\Api;
 
 use App\Models\User;
 
-
 /**
- * Class UserController
+ * Class IndexController
  */
 class UserController
 {
     private $request, $response, $service, $app;
 
     /**
-     * UserController constructor.
+     * IndexController constructor.
      * @param $request
      * @param $response
      * @param $service
@@ -28,20 +30,16 @@ class UserController
     }
 
     /**
-     * Show all users
+     * Show all
      */
     public function index()
     {
         $users = User::get();
-
-        $this->service->render(view('users/index.php', false), [
-            'title' => __('Users'),
-            'users' => $users
-        ]);
+        $this->response->json($users);
     }
 
     /**
-     * Show one user by id
+     * Show one by id
      */
     public function show()
     {
@@ -50,11 +48,38 @@ class UserController
             abort(404, (object)[
                 'service' => $this->service,
                 'response' => $this->response,
+            ], [
+                'error' => 404,
+                'errors' => [
+                    'user' => 'not found',
+                ]
             ]);
         }
-        $this->service->render(view('users/show.php', false), [
-            'title' => __('User'),
-            'user' => $user
-        ]);
+        $this->response->json($user);
     }
+
+    /**
+     * Store data
+     */
+    public function store()
+    {
+
+    }
+
+    /**
+     * Update register
+     */
+    public function update()
+    {
+
+    }
+
+    /**
+     * Delete register
+     */
+    public function destroy()
+    {
+
+    }
+
 }

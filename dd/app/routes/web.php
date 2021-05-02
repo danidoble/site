@@ -3,7 +3,7 @@
  * Created by (c)danidoble (c) 2021.
  */
 
-use \App\Controllers;
+use \App\Controllers\Web;
 
 /**
  * Examples of routes, for more info see https://github.com/klein/klein.php
@@ -19,12 +19,15 @@ $_ENV['__routing']['found'] = false;
 try {
     $route = new \Klein\Klein();
 
+    include __DIR__ . '/api.php';
+    include __DIR__ . '/auth.php';
+
     /**
      * Home page
      */
     $route->respond('GET', BASE_URI . '/', function ($request, $response, $service, $app) {
         $_ENV['__routing']['found'] = true;
-        $IndexController = new Controllers\IndexController($request, $response, $service, $app);
+        $IndexController = new Web\IndexController($request, $response, $service, $app);
         $IndexController->index();
     });
 
@@ -33,7 +36,7 @@ try {
      */
     $route->respond('GET', BASE_URI . '/users', function ($request, $response, $service, $app) {
         $_ENV['__routing']['found'] = true;
-        $UserController = new Controllers\UserController($request, $response, $service, $app);
+        $UserController = new Web\UserController($request, $response, $service, $app);
         $UserController->index();
     });
 
@@ -42,7 +45,7 @@ try {
      */
     $route->respond('GET', BASE_URI . '/users/[i:id]', function ($request, $response, $service, $app) {
         $_ENV['__routing']['found'] = true;
-        $UserController = new Controllers\UserController($request, $response, $service, $app);
+        $UserController = new Web\UserController($request, $response, $service, $app);
         $UserController->show();
     });
 

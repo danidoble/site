@@ -30,6 +30,6 @@ try {
 
 // Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
     $capsule->bootEloquent();
-} catch (Exception $e) {
+} catch (\Exception $e) {
     showError($e);
 }

@@ -13,6 +13,7 @@
     "illuminate/database": "*",
     "illuminate/events": "^8.40",
     "klein/klein": "^2.1",
+    "paragonie/anti-csrf": "^2.3",
     "swiftmailer/swiftmailer": "^6.2",
     "vlucas/phpdotenv": "^5.3"
   },

@@ -80,17 +80,22 @@ function view($name, bool $include = true, $_th = null): ?string
 /**
  * @param $no
  * @param $request
+ * @param bool|array $json
  */
-function abort($no, $request): void
+function abort($no, $request, $json = false): void
 {
-    $view = view('errors/' . $no . '.php', false);
-    if (file_exists($view)) {
-        $request->service->render($view);
-    } else {
-        echo(__('View Not Found') . ': errors/' . $no . '.php');
-    }
     $request->response->code($no);
     $request->response->sendHeaders(true);
+    if ($json !== false) {
+        $request->response->json($json);
+    } else {
+        $view = view('errors/' . $no . '.php', false);
+        if (file_exists($view)) {
+            $request->service->render($view);
+        } else {
+            echo(__('View Not Found') . ': errors/' . $no . '.php');
+        }
+    }
     exit();
 }
 
@@ -189,13 +194,14 @@ function showError($e): void
 {
     $err = (object)[];
     $err->code = $e->getCode();
-    $err->note = __('If don\'t want \'users\' table, remove the content of') . ' app/Config/test.php';
+    $err->note = null;
     if ($e->getCode() == 1049) {
         $err->msg = (__('Please connect to the right database'));
         $err->details = $e->getMessage();
     } elseif ($e->getCode() == '42S02') {
         $err->msg = (__('Please make a table named \'users\''));
         $err->details = $e->getMessage();
+        $err->note = __('If don\'t want \'users\' table, remove the content of') . ' app/Config/test.php';
     } elseif ($e->getCode() == '42S22') {
         $err->msg = (__('Please be sure of make this fields on table \'users\'') . ": 'id','name','password','created_at','updated_at','deleted_at'");
         $err->details = $e->getMessage();
@@ -233,6 +239,72 @@ function mix($name, $path = null): ?string
     }
     return null;
 }
+
+/**
+ * @param $uri
+ * @param array $params
+ * @return string
+ */
+function route($uri, array $params = []): string
+{
+    $url = BASE_URL . $uri;
+    if (!empty($params)) {
+        foreach ($params as $param) {
+            $url .= '/' . $param;
+        }
+    }
+    return $url;
+}
+
+use \ParagonIE\AntiCSRF\AntiCSRF;
+
+/**
+ * @param null $lock_to
+ * @return string
+ * @throws Exception
+ */
+function csrf($lock_to = null): string
+{
+    $r = null;
+    try {
+        $lock_to = BASE_URI . '/' . $lock_to;
+        static $csrf;
+        if ($csrf === null) {
+            $csrf = new AntiCSRF();
+        }
+        $r = $csrf->insertToken($lock_to, false);
+    } catch (Exception $e) {
+        showError($e);
+    }
+    return $r;
+}
+
+function isLogged($response, $service)
+{
+    if (isset($_SESSION['user'])) {
+        $response->unlock();
+        $service->flash(__('You have your session open'), 'error', [
+            'session' => 'You have your session open'
+        ]);
+        $response->redirect(BASE_URL, 302);
+        $response->sendHeaders(true);
+        exit();
+    }
+}
+
+function isNotLogged($response, $service)
+{
+    if (!isset($_SESSION['user'])) {
+        $response->unlock();
+        $service->flash(__('You don\'t have your session open'), 'error', [
+            'session' => 'You don\'t have your session open'
+        ]);
+        $response->redirect(BASE_URL, 302);
+        $response->sendHeaders(true);
+        exit();
+    }
+}
+
 
 ///**
 // * @param $index
