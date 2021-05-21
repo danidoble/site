@@ -110,12 +110,11 @@ function diffForHumans($date): string
     $month = (string)(int)$dia[1];
     $day = (string)(int)$dia[2];
 
-    $dias = array("domingo", "lunes", "martes", "mi&eacute;rcoles", "jueves", "viernes", "s&aacute;bado");
+    $dias = array(__("sunday"), __("monday"), __("tuesday"), __("wednesday"), __("thursday"), __("friday"), __("saturday"));
+    $meses = array("", __("January"), __("February"), __("March"), __("April"), __("May"), __("June"), __("July"), __("August"), __("September"), __("October"), __("November"), __("December"));
     $tomadia = $dias[intval((date("w", mktime(0, 0, 0, $month, $day, $year))))];
 
-    $meses = array("", "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre");
-
-    return $tomadia . ", " . $day . " de " . $meses[$month] . " de " . $year;
+    return $tomadia . ", " . $day . " " . __('of') . " " . $meses[$month] . " " . __('of') . " " . $year;
 }
 
 /**
