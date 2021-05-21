@@ -19,7 +19,9 @@ $_ENV['__routing']['found'] = false;
 try {
     $route = new \Klein\Klein();
 
+    //Api routes
     include __DIR__ . '/api.php';
+    //Auth routes
     include __DIR__ . '/auth.php';
 
     /**

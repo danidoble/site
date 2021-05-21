@@ -5,6 +5,7 @@
 
 use \App\Controllers\Api;
 
+//By default the routes of the api start with "/api" if you want change it always can do it
 $_route_api = BASE_URI . '/api';
 
 /**
