@@ -12,6 +12,7 @@
     "ext-json": "*",
     "illuminate/database": "*",
     "illuminate/events": "^8.40",
+    "illuminate/pagination": "^8.45",
     "klein/klein": "^2.1",
     "paragonie/anti-csrf": "^2.3",
     "swiftmailer/swiftmailer": "^6.2",
@@ -33,5 +34,8 @@
       "email": "ddanidoble@gmail.com"
     }
   ],
-  "version": "v0.0.1"
+  "version": "v0.0.2",
+  "require-dev": {
+    "symfony/var-dumper": "^5.3"
+  }
 }

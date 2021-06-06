@@ -28,7 +28,6 @@ require_once __DIR__ . "/app/Config/test.php";
 
 // routes
 require_once __DIR__ . "/app/routes/web.php";
-//require_once __DIR__."/app/routes/api.php";
 
 // models
 spl_autoload_register(function ($className) {
